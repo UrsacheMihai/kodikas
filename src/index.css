@@ -1,0 +1,274 @@
+/**
+ * Global Stylesheet & Design Tokens
+ * Defines Tailwind CSS directives, color themes, typography, glassmorphism utilities, and scrollbar styles.
+ * 
+ * Optional:
+ * - Customize brand palette tokens (--color-volt, --color-fuchsia) or dark/light mode surface backgrounds.
+ * - Add custom keyframe animations or custom web font declarations.
+ */
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+
+  --color-obsidian: #0A0A12;
+  --color-obsidian-surface: #10101C;
+  --color-obsidian-card: #141424;
+  --color-obsidian-elevated: #161626;
+
+  --color-volt: #B3FA3A;
+  --color-volt-bright: #C6FC6C;
+  --color-volt-light: #C6FC6C;
+  --color-volt-vivid: #83FA3A;
+
+  --color-fuchsia: #FF70C1;
+  --color-fuchsia-bright: #FF90E1;
+  --color-fuchsia-light: #FF90E1;
+  --color-fuchsia-soft: #FFB0D0;
+
+  --color-studio-white: #FFFFFF;
+  --color-studio-silver: rgba(255, 255, 255, 0.70);
+  --color-studio-muted: rgba(255, 255, 255, 0.45);
+  --color-studio-hairline: rgba(255, 255, 255, 0.08);
+  --color-studio-glass: rgba(16, 16, 28, 0.60);
+
+  --color-platinum: #FFFFFF;
+  --color-platinum-canvas: #F8F9FA;
+  --color-deep-berry: #82255A;
+  --color-deep-berry-light: #D94194;
+
+  --font-display: "Space Grotesk", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --bg-primary: #0A0A12;
+  --text-primary: #FFFFFF;
+  color-scheme: dark;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+
+  touch-action: pan-y;
+}
+
+body {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
+}
+
+html.light {
+  --bg-primary: #F8F9FA;
+  --text-primary: #0A0A12;
+  color-scheme: light;
+}
+
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(10, 10, 18, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  color: #0A0A12;
+}
+
+html.light .glass-panel-interactive {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(10, 10, 18, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  color: #0A0A12;
+}
+
+html.light .glass-panel-interactive:hover {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: rgba(130, 37, 90, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 25px rgba(130, 37, 90, 0.15);
+}
+
+html.light .specular-sheen::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(10, 10, 18, 0.15) 50%, transparent 100%);
+}
+
+html.light .hairline-border {
+  border-color: rgba(10, 10, 18, 0.08);
+}
+
+html.light .pill-badge {
+  background: rgba(10, 10, 18, 0.04);
+  border-color: rgba(10, 10, 18, 0.1);
+  color: #0A0A12;
+}
+
+html.light .subtle-dot-grid {
+  background-image: radial-gradient(rgba(10, 10, 18, 0.08) 1px, transparent 1px);
+}
+
+html.light .ambient-glow-volt {
+  background: radial-gradient(600px circle at 50% 0%, rgba(130, 37, 90, 0.08) 0%, transparent 70%);
+}
+
+html.light .ambient-glow-fuchsia {
+  background: radial-gradient(600px circle at 50% 0%, rgba(51, 102, 255, 0.08) 0%, transparent 70%);
+}
+
+html.light .ambient-spotlight {
+  background: radial-gradient(800px circle at 50% 20%, rgba(10, 10, 18, 0.03) 0%, transparent 60%);
+}
+
+html.light .text-gradient-silver {
+  background: linear-gradient(180deg, #0A0A12 0%, rgba(10, 10, 18, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .text-gradient-volt {
+  background: linear-gradient(135deg, #0A0A12 0%, #82255A 60%, #D94194 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 18, 0.15);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 10, 18, 0.3);
+}
+
+.slide-enter-right { transform: translateX(100%); }
+.slide-enter-left { transform: translateX(-100%); }
+.slide-exit-right { transform: translateX(100%); }
+.slide-exit-left { transform: translateX(-100%); }
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@layer utilities {
+
+  .glass-panel {
+    background: rgba(16, 16, 28, 0.60);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 20px 40px -15px rgba(0, 0, 0, 0.7),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-panel-interactive {
+    background: rgba(16, 16, 28, 0.60);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 20px 40px -15px rgba(0, 0, 0, 0.7),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-panel-interactive:hover {
+    background: rgba(26, 26, 42, 0.75);
+    border-color: rgba(255, 255, 255, 0.20);
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.8),
+      0 0 25px rgba(179, 250, 58, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .specular-sheen {
+    position: relative;
+  }
+
+  .specular-sheen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .ambient-glow-volt {
+    background: radial-gradient(600px circle at 50% 0%, rgba(179, 250, 58, 0.12) 0%, transparent 70%);
+  }
+
+  .ambient-glow-fuchsia {
+    background: radial-gradient(600px circle at 50% 0%, rgba(255, 112, 193, 0.12) 0%, transparent 70%);
+  }
+
+  .ambient-spotlight {
+    background: radial-gradient(800px circle at 50% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+  }
+
+  .hairline-border {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pill-badge {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+  }
+
+  .subtle-dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .text-gradient-silver {
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-volt {
+    background: linear-gradient(135deg, #FFFFFF 0%, #C6FC6C 50%, #B3FA3A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-fuchsia {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FF90E1 50%, #FF70C1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
